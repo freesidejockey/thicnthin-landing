@@ -33,7 +33,7 @@ export function Hero() {
       </p>
       <div className="mt-10 flex justify-center gap-x-6">
         <Button href="/profile">Get Started</Button>
-        <Button href="/login" variant="outline">
+        <Button href="/check-in" variant="outline">
           Check in
         </Button>
       </div>
