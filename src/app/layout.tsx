@@ -6,11 +6,11 @@ import '@/styles/tailwind.css'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - TaxPal',
-    default: 'TaxPal - Accounting made simple for small businesses',
+    template: '%s - Thic n\' Thin',
+    default: 'Thic n\' Thin - Weight loss accountability with friends who get it',
   },
   description:
-    'Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited.',
+    'Join small groups of people with similar weight loss goals. Check in daily, track your progress with beautiful weekly reports, and stay consistent together with support from friends who understand your journey.',
 }
 
 const inter = Inter({
