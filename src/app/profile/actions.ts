@@ -146,15 +146,7 @@ export async function submitProfileForm(
     const profileCode = await ensureUniqueProfileCode(supabase)
 
     // Generate a UUID for user_id
-    const { data: uuidData, error: uuidError } = await supabase.rpc('gen_random_uuid')
-
-    let userId: string
-    if (uuidError || !uuidData) {
-      // Fallback to crypto.randomUUID if available
-      userId = crypto.randomUUID()
-    } else {
-      userId = uuidData
-    }
+    const userId = crypto.randomUUID()
 
     const { error } = await supabase.from('profiles').insert({
       user_id: userId,
