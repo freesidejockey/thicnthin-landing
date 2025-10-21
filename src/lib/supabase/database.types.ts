@@ -14,6 +14,44 @@ export type Database = {
   }
   public: {
     Tables: {
+      check_ins: {
+        Row: {
+          calorie_goal_met: Database["public"]["Enums"]["calorie_goal_status"]
+          check_in_date: string
+          cravings_scale: number
+          created_at: string
+          current_weight: number
+          id: string
+          profile_id: string
+        }
+        Insert: {
+          calorie_goal_met: Database["public"]["Enums"]["calorie_goal_status"]
+          check_in_date?: string
+          cravings_scale: number
+          created_at?: string
+          current_weight: number
+          id?: string
+          profile_id: string
+        }
+        Update: {
+          calorie_goal_met?: Database["public"]["Enums"]["calorie_goal_status"]
+          check_in_date?: string
+          cravings_scale?: number
+          created_at?: string
+          current_weight?: number
+          id?: string
+          profile_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "check_ins_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       contact_submissions: {
         Row: {
           created_at: string
@@ -38,6 +76,51 @@ export type Database = {
         }
         Relationships: []
       }
+      profiles: {
+        Row: {
+          created_at: string
+          current_height: number
+          current_weight: number
+          email: string
+          first_name: string
+          goal_weight: number
+          id: string
+          last_name: string
+          phone: string
+          profile_code: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          current_height: number
+          current_weight: number
+          email: string
+          first_name: string
+          goal_weight: number
+          id?: string
+          last_name: string
+          phone: string
+          profile_code: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          current_height?: number
+          current_weight?: number
+          email?: string
+          first_name?: string
+          goal_weight?: number
+          id?: string
+          last_name?: string
+          phone?: string
+          profile_code?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -46,7 +129,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      calorie_goal_status: "yes" | "no" | "did_not_track" | "no_calorie_goal"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -173,6 +256,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      calorie_goal_status: ["yes", "no", "did_not_track", "no_calorie_goal"],
+    },
   },
 } as const
