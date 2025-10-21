@@ -12,7 +12,7 @@ import logoTuple from '@/images/logos/tuple.svg'
 export function Hero() {
   return (
     <Container
-      className="flex flex-col justify-center text-center"
+      className="flex flex-col justify-center text-center px-4 sm:px-6"
       style={{ minHeight: 'calc(100vh - 10rem)' }}
     >
       <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
@@ -29,7 +29,7 @@ export function Hero() {
           <span className="relative">friends who get it</span>
         </span>
       </h1>
-      <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
+      <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700 px-4 sm:px-0">
         Join small groups of people with similar weight loss goals. Check in
         regularly, get beautiful weekly progress reports, and stay consistent
         together.

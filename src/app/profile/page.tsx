@@ -351,7 +351,7 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            <div className="mt-4">
+            <div className="mt-4 mb-8 sm:mb-0">
               <SubmitButton />
             </div>
           </div>
