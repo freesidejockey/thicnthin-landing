@@ -1,0 +1,215 @@
+# Project Context for Claude Code
+
+This file is automatically loaded by Claude Code to provide important context about the project.
+
+---
+
+## Project: ThicNThin Landing Page
+
+A Next.js 15 landing page for ThicNThin with Supabase integration, built using React 19, TypeScript, and Tailwind CSS.
+
+---
+
+## Important Documentation Files
+
+When working on this project, always reference these files:
+
+1. **Design System**: `DESIGN_SYSTEM.md`
+   - Contains color palette, typography, spacing, and component patterns
+   - Reference when creating or modifying UI components
+   - Ensures visual consistency across the application
+
+2. **Supabase Integration Guide**: `docs/SUPABASE_INTEGRATION.md`
+   - Complete guide for creating database-driven forms
+   - Includes patterns for RLS policies, validation, and type safety
+   - Use this as a template for any new Supabase features
+
+---
+
+## Key Architecture Decisions
+
+### Tech Stack
+- **Framework**: Next.js 15 (App Router)
+- **React**: v19 (with Server Components)
+- **TypeScript**: v5.8+
+- **Database**: Supabase (PostgreSQL)
+- **Styling**: Tailwind CSS v4
+- **Forms**: React 19 hooks (useFormState, useFormStatus)
+
+### Project Structure
+```
+src/
+├── app/                    # Next.js app router pages
+│   ├── (auth)/            # Auth-related routes (grouped)
+│   ├── contact/           # Contact form example
+│   │   ├── actions.ts     # Server actions
+│   │   └── page.tsx       # Client component
+│   └── layout.tsx         # Root layout
+├── components/            # Reusable React components
+└── lib/
+    └── supabase/         # Supabase configuration
+        ├── client.ts     # Client-side Supabase instance
+        ├── server.ts     # Server-side Supabase instance
+        └── database.types.ts  # Generated TypeScript types
+```
+
+### Supabase Integration Pattern
+
+All Supabase interactions follow this pattern:
+
+1. **Database Schema**: Create tables via MCP migrations
+2. **Type Generation**: Auto-generate TypeScript types from schema
+3. **Server Actions**: Handle data mutations with server-side validation
+4. **Client Components**: Progressive enhancement with client-side validation
+5. **RLS Policies**: Always enable Row Level Security
+
+**Example Reference**: See `src/app/contact/` for a complete implementation
+
+---
+
+## Development Guidelines
+
+### When Creating New Forms:
+
+1. **Always reference**: `docs/SUPABASE_INTEGRATION.md`
+2. **Follow the pattern**:
+   - Create migration with RLS policies
+   - Generate TypeScript types
+   - Create server action with validation
+   - Build client component with validation
+3. **Security first**: Enable RLS, validate inputs, sanitize data
+
+### When Styling Components:
+
+1. **Always reference**: `DESIGN_SYSTEM.md`
+2. **Color consistency**: Use defined color palette
+3. **Typography**: Use Lexend for headings, Inter for body
+4. **Spacing**: Follow 8px grid system
+5. **Accessibility**: Maintain proper contrast ratios
+
+### Server vs Client Components:
+
+- **Server Components**: Default, use for data fetching
+- **Client Components**: Use `'use client'` for:
+  - Form interactions (useFormState, useFormStatus)
+  - Event handlers (onClick, onChange, etc.)
+  - Client-side state (useState, useEffect)
+  - Browser APIs
+
+### Validation Strategy:
+
+- **Client-side**: Immediate feedback, better UX
+- **Server-side**: Security and data integrity
+- **Never trust client**: Always validate on server
+
+---
+
+## MCP Tools Available
+
+This project uses Supabase MCP for database operations:
+
+- `mcp__supabase__apply_migration` - Create/modify database schema
+- `mcp__supabase__generate_typescript_types` - Generate types from schema
+- `mcp__supabase__execute_sql` - Run ad-hoc queries
+- `mcp__supabase__get_logs` - View service logs
+- `mcp__supabase__get_advisors` - Check for security/performance issues
+- `mcp__supabase__list_tables` - List database tables
+- `mcp__supabase__list_extensions` - List database extensions
+- `mcp__supabase__list_migrations` - List all migrations
+
+**Always use MCP tools** for database operations instead of manual SQL execution.
+
+---
+
+## Environment Variables Required
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=your-project-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+```
+
+These are referenced in:
+- `src/lib/supabase/client.ts`
+- `src/lib/supabase/server.ts`
+
+---
+
+## Code Quality Standards
+
+### TypeScript
+- Strict mode enabled
+- No implicit any
+- Use type imports: `import type { Database } from '...'`
+- Prefer interfaces over types for objects
+
+### React
+- Functional components only
+- Use proper React 19 hooks
+- Server Components by default
+- Client Components when needed
+
+### Naming Conventions
+- **Files**: kebab-case (`contact-form.tsx`)
+- **Components**: PascalCase (`ContactForm`)
+- **Functions**: camelCase (`submitContactForm`)
+- **Types**: PascalCase (`FormState`)
+- **Constants**: SCREAMING_SNAKE_CASE
+
+---
+
+## Common Tasks
+
+### Add a new database table:
+1. Reference: `docs/SUPABASE_INTEGRATION.md`
+2. Use: `mcp__supabase__apply_migration`
+3. Regenerate types: `mcp__supabase__generate_typescript_types`
+
+### Create a new form:
+1. Follow the pattern in `src/app/contact/`
+2. Create `actions.ts` with server-side validation
+3. Create `page.tsx` with client-side validation
+4. Apply styles from `DESIGN_SYSTEM.md`
+
+### Check database security:
+```
+mcp__supabase__get_advisors({ type: "security" })
+```
+
+### View application logs:
+```
+mcp__supabase__get_logs({ service: "api" })
+```
+
+---
+
+## Testing Checklist
+
+Before committing new features:
+
+- [ ] TypeScript compiles without errors (`npm run build`)
+- [ ] Client-side validation works
+- [ ] Server-side validation works
+- [ ] Error messages are user-friendly
+- [ ] Success states are clear
+- [ ] Follows design system
+- [ ] RLS policies are correct
+- [ ] No security vulnerabilities (check advisors)
+- [ ] Accessible (keyboard navigation, screen readers)
+
+---
+
+## Resources
+
+- [Next.js 15 Docs](https://nextjs.org/docs)
+- [Supabase Docs](https://supabase.com/docs)
+- [Tailwind CSS Docs](https://tailwindcss.com/docs)
+- [React 19 Docs](https://react.dev)
+
+---
+
+## Notes
+
+- This is an MVP - some features use public RLS policies
+- Production deployment will require stricter security
+- Always test forms with edge cases (empty, too long, special characters)
+- Keep documentation updated as patterns evolve
