@@ -1,35 +1,21 @@
-# Salient
+# Thic N Thin
 
-Salient is a [Tailwind Plus](https://tailwindcss.com/plus) site template built using [Tailwind CSS](https://tailwindcss.com) and [Next.js](https://nextjs.org).
+Landing page for Thic N Thin, built with [Next.js](https://nextjs.org) and [Tailwind CSS](https://tailwindcss.com).
 
-## Getting started
+Visit the live site at [thicnthin.com](https://www.thicnthin.com)
 
-To get started with this template, first install the npm dependencies:
+## Getting Started
 
-```bash
-npm install
-```
-
-Next, run the development server:
+Install dependencies:
 
 ```bash
-npm run dev
+pnpm install
 ```
 
-Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
+Run the development server:
 
-## Customizing
+```bash
+pnpm dev
+```
 
-You can start editing this template by modifying the files in the `/src` folder. The site will auto-update as you edit these files.
-
-## License
-
-This site template is a commercial product and is licensed under the [Tailwind Plus license](https://tailwindcss.com/plus/license).
-
-## Learn more
-
-To learn more about the technologies used in this site template, see the following resources:
-
-- [Tailwind CSS](https://tailwindcss.com/docs) - the official Tailwind CSS documentation
-- [Next.js](https://nextjs.org/docs) - the official Next.js documentation
-- [Headless UI](https://headlessui.dev) - the official Headless UI documentation
+Open [http://localhost:3000](http://localhost:3000) to view the site.
