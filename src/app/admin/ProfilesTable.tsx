@@ -48,7 +48,7 @@ async function ProfilesData() {
               {profile.goal_weight} lbs
             </TableCell>
             <TableCell className="whitespace-nowrap px-6">
-              {new Date(profile.created_at).toLocaleDateString()}
+              {profile.created_at ? new Date(profile.created_at).toLocaleDateString() : 'N/A'}
             </TableCell>
           </TableRow>
         ))}

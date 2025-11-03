@@ -65,7 +65,7 @@ export async function lookupUserByEmail(
     return {
       success: true,
       message: `Found profile for ${profile.first_name} ${profile.last_name}`,
-      profileCode: profile.profile_code,
+      profileCode: profile.profile_code ?? undefined,
     }
   } catch (error) {
     console.error('Unexpected error:', error)

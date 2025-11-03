@@ -1,5 +1,6 @@
 import { ProfilesTable } from './ProfilesTable'
 import { GroupsTable } from './GroupsTable'
+import { ReportGenerationSection } from './ReportGenerationSection'
 
 export default function AdminPage() {
   return (
@@ -7,6 +8,7 @@ export default function AdminPage() {
       <h1 className="mb-8 text-3xl font-bold">Admin Dashboard</h1>
       <ProfilesTable />
       <GroupsTable />
+      <ReportGenerationSection />
     </div>
   )
 }
