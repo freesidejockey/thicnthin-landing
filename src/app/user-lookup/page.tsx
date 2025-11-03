@@ -4,6 +4,7 @@ import { useFormState, useFormStatus } from 'react-dom'
 import { lookupUserByEmail, type FormState } from './actions'
 import { useState } from 'react'
 import { Header } from '@/components/Header'
+import Link from 'next/link'
 
 function SubmitButton() {
   const { pending } = useFormStatus()
@@ -133,9 +134,9 @@ export default function UserLookupPage() {
               Don&apos;t have a profile yet?
             </p>
             <p className="text-sm text-blue-800">
-              <a href="/profile" className="underline hover:text-blue-600">
+              <Link href="/profile" className="underline hover:text-blue-600">
                 Create your profile
-              </a>{' '}
+              </Link>{' '}
               to get started on your journey.
             </p>
           </div>
